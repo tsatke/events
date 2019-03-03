@@ -11,7 +11,7 @@ test:
   stage: test
   retry: 2
   script:
-    - go test -v -race -coverprofile=coverage.txt -covermode=atomic ./... -debug
+    - go test -v -race -coverprofile=coverage.txt -covermode=atomic ./...
   artifacts:
     paths:
       - coverage.txt
