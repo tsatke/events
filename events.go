@@ -1,8 +1,9 @@
 package events
 
 type Event struct {
-	Type uint16
-	Data interface{}
+	Type   uint16
+	Source interface{}
+	Data   interface{}
 }
 
 type Dispatcher interface {

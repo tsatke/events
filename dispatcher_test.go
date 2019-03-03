@@ -7,6 +7,37 @@ import (
 	"gitlab.com/TimSatke/events"
 )
 
+func TestDispatcherPayload(t *testing.T) {
+	evtType := uint16(4)
+
+	dispatcher := events.NewDispatcher()
+
+	source := "source"
+	data := "data"
+
+	f := func(evt events.Event) {
+		if evt.Type != evtType {
+			t.Fatalf("Mismatch event type (actual: %v, expected: %v)", evt.Type, evtType)
+		}
+		if evt.Source != source {
+			t.Fatalf("Mismatch event source (actual: %v, expected: %v)", evt.Source, source)
+		}
+		if evt.Data != data {
+			t.Fatalf("Mismatch event data (actual: %v, expected: %v)", evt.Data, data)
+		}
+	}
+
+	dispatcher.RegisterFunc(evtType, f)
+
+	evt := events.Event{
+		Type:   evtType,
+		Source: source,
+		Data:   data,
+	}
+
+	dispatcher.Fire(evt)
+}
+
 func TestDispatcherUnregisterNil(t *testing.T) {
 	evtType := uint16(0)
 
@@ -21,8 +52,9 @@ func TestDispatcherUnregisterNil(t *testing.T) {
 	dispatcher.Register(evtType, consumer)
 
 	evt := events.Event{
-		Type: evtType,
-		Data: nil,
+		Type:   evtType,
+		Source: nil,
+		Data:   nil,
 	}
 
 	dispatcher.Fire(evt)
@@ -48,8 +80,9 @@ func TestDispatcherUnregisterConsumer(t *testing.T) {
 	dispatcher.Register(evtType, consumer)
 
 	evt := events.Event{
-		Type: evtType,
-		Data: nil,
+		Type:   evtType,
+		Source: nil,
+		Data:   nil,
 	}
 
 	dispatcher.Fire(evt)
@@ -76,8 +109,9 @@ func TestDispatcherRegisterConsumerTwice(t *testing.T) {
 	dispatcher.Register(evtType, consumer)
 
 	evt := events.Event{
-		Type: evtType,
-		Data: nil,
+		Type:   evtType,
+		Source: nil,
+		Data:   nil,
 	}
 
 	dispatcher.Fire(evt)
@@ -95,8 +129,9 @@ func TestDispatcherRegisterNil(_ *testing.T) {
 	dispatcher.Register(evtType, nil)
 
 	dispatcher.Fire(events.Event{
-		Type: evtType,
-		Data: nil,
+		Type:   evtType,
+		Source: nil,
+		Data:   nil,
 	})
 }
 
@@ -108,8 +143,9 @@ func TestDispatcherRegisterNilFunc(_ *testing.T) {
 	dispatcher.RegisterFunc(evtType, nil)
 
 	dispatcher.Fire(events.Event{
-		Type: evtType,
-		Data: nil,
+		Type:   evtType,
+		Source: nil,
+		Data:   nil,
 	})
 }
 
@@ -128,8 +164,9 @@ func TestDispatcherFireFunc(t *testing.T) {
 	dispatcher.RegisterFunc(evtType, f)
 
 	evt := events.Event{
-		Type: evtType,
-		Data: nil,
+		Type:   evtType,
+		Source: nil,
+		Data:   nil,
 	}
 
 	for i := uint64(0); i < totalExecs; i++ {
@@ -156,8 +193,9 @@ func TestDispatcherFireConsumer(t *testing.T) {
 	dispatcher.Register(evtType, events.NewConsumer(f))
 
 	evt := events.Event{
-		Type: evtType,
-		Data: nil,
+		Type:   evtType,
+		Source: nil,
+		Data:   nil,
 	}
 
 	for i := uint64(0); i < totalExecs; i++ {
@@ -185,8 +223,9 @@ func TestDispatcherFireBoth(t *testing.T) {
 	dispatcher.Register(evtType, events.NewConsumer(f))
 
 	evt := events.Event{
-		Type: evtType,
-		Data: nil,
+		Type:   evtType,
+		Source: nil,
+		Data:   nil,
 	}
 
 	for i := uint64(0); i < totalExecs; i++ {
