@@ -6,7 +6,6 @@ stages:
 
 before_script:
   - cd ${CI_PROJECT_DIR}
-  - mkdir -p ${ARTIFACTS_DIR}
 
 test:
   stage: test
