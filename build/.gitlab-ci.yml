@@ -1,13 +1,11 @@
 image: golang:latest
 
-variables:
-  VERSION: ${CI_PROJECT_NAMESPACE}_${CI_BUILD_ID}_$(date "+%Y-%m-%d-%H:%M:%S")
-
 stages:
   - test
   - analysis
 
 before_script:
+  - export VERSION="${CI_PROJECT_NAMESPACE}_${CI_BUILD_ID}_$(date "+%Y-%m-%d-%H:%M:%S")"
   - cd ${CI_PROJECT_DIR}
 
 test:
