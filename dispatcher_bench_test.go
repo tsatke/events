@@ -15,8 +15,9 @@ func BenchmarkDispatcherFireFunc(b *testing.B) {
 	})
 
 	event := events.Event{
-		Type: evtType,
-		Data: nil,
+		Type:   evtType,
+		Source: nil,
+		Data:   nil,
 	}
 
 	b.ReportAllocs()
@@ -37,8 +38,9 @@ func BenchmarkDispatcherFireConsumer(b *testing.B) {
 	}))
 
 	event := events.Event{
-		Type: evtType,
-		Data: nil,
+		Type:   evtType,
+		Source: nil,
+		Data:   nil,
 	}
 
 	b.ReportAllocs()
@@ -62,8 +64,9 @@ func BenchmarkDispatcherFireBoth(b *testing.B) {
 	dispatcher.RegisterFunc(evtType, f)
 
 	event := events.Event{
-		Type: evtType,
-		Data: nil,
+		Type:   evtType,
+		Source: nil,
+		Data:   nil,
 	}
 
 	b.ReportAllocs()
