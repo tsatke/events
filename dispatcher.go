@@ -76,6 +76,11 @@ func (d *disp) deleteConsumer(evtType uint16, consumerID string) {
 }
 
 func (d *disp) RegisterFunc(evtType uint16, f func(Event)) {
+	// abort if no func is given
+	if f == nil {
+		return
+	}
+
 	d.funcsLock.Lock()
 	defer d.funcsLock.Unlock()
 
