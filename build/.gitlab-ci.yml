@@ -5,7 +5,7 @@ stages:
   - analysis
 
 before_script:
-  - export VERSION="$(echo ${CI_BUILD_TAG} | echo ${CI_BUILD_ID}_$(date "+%Y-%m-%d-%H:%M:%S"))"
+  - export VERSION="${CI_COMMIT_SHORT_SHA}_$(date "+%Y-%m-%d-%H:%M:%S")"
   - cd ${CI_PROJECT_DIR}
 
 test:
