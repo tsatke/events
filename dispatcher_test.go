@@ -87,7 +87,7 @@ func TestDispatcherRegisterConsumerTwice(t *testing.T) {
 	}
 }
 
-func TestDispatcherRegisterNil(t *testing.T) {
+func TestDispatcherRegisterNil(_ *testing.T) {
 	evtType := uint16(0)
 
 	dispatcher := events.NewDispatcher()
@@ -100,7 +100,7 @@ func TestDispatcherRegisterNil(t *testing.T) {
 	})
 }
 
-func TestDispatcherRegisterNilFunc(t *testing.T) {
+func TestDispatcherRegisterNilFunc(_ *testing.T) {
 	evtType := uint16(0)
 
 	dispatcher := events.NewDispatcher()
@@ -119,7 +119,7 @@ func TestDispatcherFireFunc(t *testing.T) {
 	totalExecs := uint64(100000)
 	recordedExecs := uint64(0)
 
-	f := func(evt events.Event) {
+	f := func(_ events.Event) {
 		atomic.AddUint64(&recordedExecs, 1)
 	}
 
@@ -147,7 +147,7 @@ func TestDispatcherFireConsumer(t *testing.T) {
 	totalExecs := uint64(100000)
 	recordedExecs := uint64(0)
 
-	f := func(evt events.Event) {
+	f := func(_ events.Event) {
 		atomic.AddUint64(&recordedExecs, 1)
 	}
 
@@ -175,7 +175,7 @@ func TestDispatcherFireBoth(t *testing.T) {
 	totalExecs := uint64(100000)
 	recordedExecs := uint64(0)
 
-	f := func(evt events.Event) {
+	f := func(_ events.Event) {
 		atomic.AddUint64(&recordedExecs, 1)
 	}
 

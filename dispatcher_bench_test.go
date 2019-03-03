@@ -10,7 +10,7 @@ func BenchmarkDispatcherFireFunc(b *testing.B) {
 	evtType := uint16(0)
 
 	dispatcher := events.NewDispatcher()
-	dispatcher.RegisterFunc(evtType, func(evt events.Event) {
+	dispatcher.RegisterFunc(evtType, func(_ events.Event) {
 		_ = 0
 	})
 
@@ -32,7 +32,7 @@ func BenchmarkDispatcherFireConsumer(b *testing.B) {
 	evtType := uint16(0)
 
 	dispatcher := events.NewDispatcher()
-	dispatcher.Register(evtType, events.NewConsumer(func(evt events.Event) {
+	dispatcher.Register(evtType, events.NewConsumer(func(_ events.Event) {
 		_ = 0
 	}))
 
@@ -53,7 +53,7 @@ func BenchmarkDispatcherFireConsumer(b *testing.B) {
 func BenchmarkDispatcherFireBoth(b *testing.B) {
 	evtType := uint16(0)
 
-	f := func(evt events.Event) {
+	f := func(_ events.Event) {
 		_ = 0
 	}
 
