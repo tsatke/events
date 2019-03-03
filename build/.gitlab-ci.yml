@@ -1,5 +1,8 @@
 image: golang:latest
 
+variables:
+  VERSION: ${CI_PROJECT_NAMESPACE}_${CI_BUILD_ID}_$(date "+%Y-%m-%d-%H:%M:%S")
+
 stages:
   - test
   - analysis
@@ -31,7 +34,8 @@ sonarcloud-scan:
         -v $(pwd)/test/sonar-scanner.properties:/root/sonar-scanner/conf/sonar-scanner.properties \
         newtmitch/sonar-scanner sonar-scanner \
         -Dsonar.branch.name=${CI_COMMIT_REF_SLUG} \
-        -Dsonar.login=${SONARCLOUD_LOGIN}
+        -Dsonar.login=${SONARCLOUD_LOGIN} \
+        -Dsonar.projectVersion=${VERSION}
 
 analysis:
   stage: analysis
