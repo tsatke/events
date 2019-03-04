@@ -5,7 +5,7 @@ stages:
   - analysis
 
 before_script:
-  - export VERSION="${CI_COMMIT_SHORT_SHA}_$(date "+%Y-%m-%d-%H:%M:%S")"
+  - export VERSION="${CI_COMMIT_REF_SLUG}_$(date "+%Y-%m-%d-%H:%M:%S")"
   - cd ${CI_PROJECT_DIR}
 
 test:
@@ -16,6 +16,15 @@ test:
   artifacts:
     paths:
       - coverage.txt
+
+test-all:
+  stage: test
+  retry: 2
+  script:
+    - go test all
+  only:
+    - master
+    - tags
 
 sonarcloud-scan:
   stage: analysis
@@ -51,6 +60,7 @@ analysis:
         --volume /var/run/docker.sock:/var/run/docker.sock
         "registry.gitlab.com/gitlab-org/security-products/sast:$SP_VERSION" /app/bin/run /code
   only:
+    - tags
     - master
     - develop
     - schedules
