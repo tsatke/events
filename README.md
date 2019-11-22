@@ -13,10 +13,6 @@
 
 ---
 
-# Events
-
-A small dispatcher framework for golang.
-
 ## How to use
 Go get it with
 ```
