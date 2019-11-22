@@ -3,7 +3,7 @@ package events_test
 import (
 	"testing"
 
-	"gitlab.com/TimSatke/events"
+	"github.com/TimSatke/events"
 )
 
 func BenchmarkDispatcherFireFunc(b *testing.B) {

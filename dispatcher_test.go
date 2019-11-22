@@ -4,7 +4,7 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"gitlab.com/TimSatke/events"
+	"github.com/TimSatke/events"
 )
 
 func TestDispatcherPayload(t *testing.T) {

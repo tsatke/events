@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"gitlab.com/TimSatke/events"
+	"github.com/TimSatke/events"
 )
 
 // EventTypes
@@ -13,7 +13,7 @@ const (
 	EventGoodbye
 )
 
-func main() {
+func ExampleFire() {
 	disp := events.NewDispatcher()
 	cons := &MyConsumer{}
 
@@ -36,6 +36,9 @@ func main() {
 
 	disp.Fire(evtExample)
 	disp.Fire(evtGreeting)
+
+	//Output:
+	// Hello, World!
 }
 
 type MyConsumer struct {
