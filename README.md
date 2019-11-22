@@ -34,3 +34,5 @@ evtGreeting := events.Event{
 }
 disp.Fire(evtGreeting)
 ```
+
+Have a look at the [examples](https://github.com/TimSatke/events/tree/master/examples).
