@@ -4,6 +4,8 @@ import (
 	"github.com/google/uuid"
 )
 
+// NewConsumer creates a new ready to use consumer, that can be registered to an
+// event in a dispatcher.
 func NewConsumer(f func(Event)) Consumer {
 	return &cons{
 		id: uuid.New().String(),

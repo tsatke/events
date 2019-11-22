@@ -4,6 +4,7 @@ import (
 	"sync"
 )
 
+// NewDispatcher creates a new, ready to use dispatcher.
 func NewDispatcher() Dispatcher {
 	return &disp{
 		consumers: make(map[uint16][]Consumer),
